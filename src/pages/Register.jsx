@@ -73,7 +73,7 @@ const handleSubmit = async (e) => {
                 <input type='password' placeholder='Enter Password'/>
                 <input style={{display:'none'}} type='file' id="file" />
                 <label htmlFor="file">
-                    <p class='uploadText'>Upload</p>
+                    <p className='uploadText'>Upload</p>
                 </label>
                 <button disabled={loading}>Sign Up</button>
                 {loading && "Uploading...."}

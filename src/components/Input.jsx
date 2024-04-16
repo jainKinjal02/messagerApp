@@ -18,7 +18,7 @@ export const Input = () => {
   const {data} = useContext(ChatContext);
 
   const handleSend = async () =>{
-
+    console.log(img);
     if(img) {
       const storageRef = ref(storage , uuid());
 
@@ -48,7 +48,7 @@ export const Input = () => {
     }else {
         await updateDoc(doc(db, "chats",data.chatId),{
           messages: arrayUnion({
-            id: uuid(),
+            id: uuid(), //  uuid library  using npm install uuid to add a unique id
             text,
             senderId: currentUser.uid,
             date: Timestamp.now()
@@ -70,7 +70,7 @@ export const Input = () => {
       [data.chatId+".date"]: serverTimestamp()
     });
 
-    setText('');
+    setText("");
     setImg(null);
   }
 
@@ -86,7 +86,11 @@ export const Input = () => {
         <input type='file' 
         style={{display:"none"}} 
         id="file" 
-        onChange={e=> setImg(e.target.files[0])}/>
+        onChange={e=> {
+          console.log('-------')
+          console.log(e.target.files['0']);
+          return setImg(e.target.files['0']
+          )}}/>
         <label htmlFor="file">
           <img src={Img} alt=""/>
         </label>
